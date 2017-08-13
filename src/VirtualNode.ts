@@ -1,5 +1,5 @@
 export default class VirtualNode {
-    constructor(id?:string) {
-        
+    constructor(id?: string) {
+        return;
     }
-};
+}

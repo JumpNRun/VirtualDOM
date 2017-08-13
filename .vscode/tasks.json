@@ -13,6 +13,14 @@
                 "kind": "build",
                 "isDefault": true
             }
+        },
+        {
+            "type": "gulp",
+            "task": "tslint",
+            "label": "Run tslint",
+            "problemMatcher": [
+                "$tslint5"
+            ]
         }
     ]
 }
