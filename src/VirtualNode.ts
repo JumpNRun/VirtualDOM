@@ -1,5 +1,5 @@
 export default class VirtualNode {
-    constructor() {
+    constructor(s) {
         return;
     }
 }
