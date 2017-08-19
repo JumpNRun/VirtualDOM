@@ -9,7 +9,7 @@ var tsProject = ts.createProject("tsconfig.json");
 var distPath = tsProject.config.compilerOptions.outDir;
 
 gulp.task("tslint", () => {
-    tsProject.src()
+    return tsProject.src()
         .pipe(tslint({
             formatter: "prose"
         }))
@@ -19,17 +19,21 @@ gulp.task("tslint", () => {
 });
 
 gulp.task("clean", () => {
-    return gulp.src(distPath, {
+    return gulp.src(["./dist", "./src/**/*.js*", "./demo/**/*.js*"], {
         read: false
     }).pipe(clean());
 });
 
-gulp.task("build", ["tslint", "clean"], () => {
+gulp.task("compile-ts", () => {
     return tsProject.src()
-        .pipe(sourcemaps.init())
-        .pipe(tsProject())
-        .js
-        .pipe(uglify())
-        .pipe(sourcemaps.write("."))
-        .pipe(gulp.dest(distPath));
+    .pipe(sourcemaps.init())
+    .pipe(tsProject())
+    .js
+    .pipe(uglify())
+    .pipe(sourcemaps.write("."))
+    .pipe(gulp.dest("."));
+});
+
+gulp.task("build", ["tslint", "clean", "compile-ts"], () => {
+    //gulp.watch(["./src/**/*.ts", "./demo/**/*.ts"], ["compile-ts"]);
 });

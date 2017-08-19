@@ -1,2 +1,6 @@
-/dist/
 /node_modules/
+/src/**/*.js
+/src/**/*.js.map
+/demo/**/*.js
+/demo/**/*.js.map
+/dist/
